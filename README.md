@@ -1,11 +1,6 @@
 # Portfolio QA – Reyes Díaz  
 **Portafolio web personal de proyectos de QA**  
-🔗 [Ver Web Portfolio QA](https://bootcamp-qa.github.io/portfolioqa/)
-
----
-
-## 📝 Descripción del proyecto
-Este portafolio web muestra mis proyectos de **QA**. Incluye un **formulario de contacto** con una API asociada que permite guardar los datos enviados, así como una sección admin que permite consultar los datos recibidos en el formulario.
+🔗 [Ver Web Portfolio QA](https://bootcamp-qa.github.io/template-portfolioqa/)
 
 ---
 
@@ -17,6 +12,11 @@ Este portafolio web muestra mis proyectos de **QA**. Incluye un **formulario de 
 ![Postman](https://img.shields.io/badge/postman-%23FF6C37.svg?style=for-the-badge&logo=postman&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232088FF.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 
+
+---
+
+## 📝 Descripción del proyecto
+Este portafolio web muestra mis proyectos de **QA**. Incluye un **formulario de contacto** con una API asociada que permite guardar los datos enviados, así como una sección admin que permite consultar los datos recibidos en el formulario.
 
 ---
 
