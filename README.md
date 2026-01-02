@@ -32,7 +32,7 @@ Este portafolio web muestra mis proyectos de **QA**. Incluye un **formulario de 
 
 ## 🗄 Base de Datos
 Se ha creado una base de datos en Supabase para almacenar los datos enviados desde el formulario de contacto.  
-- La carpeta `scripts` incluye todas las **consultas SQL de prueba**, que permiten generar, consultar, editar o eliminar datos de prueba según sea necesario.  
+- La carpeta `sql` incluye todas las **consultas SQL de prueba**, que permiten generar, consultar, editar o eliminar datos de prueba según sea necesario.  
 - Proyecto Supabase (requiere acceso): [Supabase Project](https://supabase.com/dashboard/project/vtizuqohukyyxvcshmbs)  
 
 ## 🗄 API de Formulario

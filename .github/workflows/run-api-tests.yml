@@ -1,0 +1,60 @@
+name: Automated API tests using Postman CLI and Newman
+
+on:
+  push:  # Se ejecuta en cada push
+    branches:
+      - main
+  workflow_dispatch: {}  # Permite ejecución manual
+  schedule:
+    - cron: '0 0 * * 1'  # Se ejecuta semanalmente. Los lunes a media noche
+
+jobs:
+  automated-api-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Postman CLI
+        run: |
+          curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+
+      - name: Install Newman and HTML Reporter
+        run: |
+          npm install -g newman
+          npm install -g newman-reporter-html
+
+      - name: Download Postman collection using Postman API
+        run: |
+          curl --location --request GET "https://api.getpostman.com/collections/33801345-5d9e4cce-b45e-4bf9-ad98-d0ee4cc254fb" \
+          --header "X-Api-Key: ${{ secrets.POSTMAN_API_KEY }}" \
+          --output collection.json
+
+      - name: Download Postman environment using Postman API
+        run: |
+          curl --location --request GET "https://api.getpostman.com/environments/33801345-b6d6599f-f9a8-418c-91b1-fe6e63a48a95" \
+          --header "X-Api-Key: ${{ secrets.POSTMAN_API_KEY }}" \
+          --output environment.json
+
+      - name: Run API tests with Newman and generate HTML report
+        run: |
+          newman run collection.json -e environment.json --reporters cli,html --reporter-html-export report.html
+
+      - name: Configure Git for deployment
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+
+      - name: Upload HTML report as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: postman-report
+          path: report.html
+
+      - name: Upload Postman collection as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: postman-collection
+          path: collection.json
