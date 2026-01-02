@@ -6,7 +6,7 @@ const SUPABASE_API_KEY = 'sb_publishable_s4C8y1rgb321cEF5B969MA_3jMwVpNJ';
 // FUNCION PARA ENVIAR FORMULARIO
 // ----------------------------
 function enviarFormulario(event) {
-  event.preventDefault(); // esto funciona correctamente
+  event.preventDefault(); 
   var formMessage = document.getElementById('formMessage');
   formMessage.textContent = '';
   formMessage.style.color = '';
@@ -18,12 +18,12 @@ function enviarFormulario(event) {
     name: document.getElementById('nombre').value
   };
 
-  fetch('https://ifgzperqnxoomyvvytzr.supabase.co/rest/v1/forms', {
+  fetch(SUPABASE_URL + '/rest/v1/forms', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'apikey': 'sb_publishable_s4C8y1rgb321cEF5B969MA_3jMwVpNJ',
-      'Authorization': 'Bearer sb_publishable_s4C8y1rgb321cEF5B969MA_3jMwVpNJ'
+      'apikey': SUPABASE_API_KEY,
+      'Authorization': SUPABASE_API_KEY
     },
     body: JSON.stringify(data)
   })
