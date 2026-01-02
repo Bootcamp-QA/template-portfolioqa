@@ -3,7 +3,6 @@ Este portafolio web muestra mis proyectos de **QA**. Incluye un **formulario de 
 
 🔗 [Ver Web Portfolio QA](https://bootcamp-qa.github.io/template-portfolioqa/)
 
----
 
 ## ⚙️ Funcionalidades principales
 - Menú de navegación
@@ -31,8 +30,6 @@ Este portafolio web muestra mis proyectos de **QA**. Incluye un **formulario de 
 
 
 
----
-
 ## 🗄 Base de Datos
 Se ha creado una base de datos en Supabase para almacenar los datos enviados desde el formulario de contacto.  
 - La carpeta `sql` incluye todas las **consultas SQL de prueba**, que permiten generar, consultar, editar o eliminar datos de prueba según sea necesario.  
@@ -56,7 +53,7 @@ Se probó la **API del formulario de contacto** y se validó el correcto almacen
 
 ---
 
-## 👩‍💻 Autor
-**Reyes Díaz – QA Junior**  
+## 👩‍💻 Autora
+**Reyes Cuesta – QA Junior**  
 [🔗 LinkedIn](https://www.linkedin.com/in/reyescuesta)
 
