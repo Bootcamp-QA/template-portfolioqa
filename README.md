@@ -1,6 +1,17 @@
 # Portfolio QA – Reyes Díaz  
-**Portafolio web personal de proyectos de QA**  
+Este portafolio web muestra mis proyectos de **QA**. Incluye un **formulario de contacto** conectado a una API que permite guardar los datos del formulario en la base de datos y mostrarlos en la página de Admin.
+
 🔗 [Ver Web Portfolio QA](https://bootcamp-qa.github.io/template-portfolioqa/)
+
+---
+
+## ⚙️ Funcionalidades principales
+- Menú de navegación
+- Cabecera con información personal.
+- Sección con enlaces y descripción de proyectos QA.
+- Sección de formación.  
+- Formulario de contacto.  
+- Página Admin para consulta de datos del formulario.
 
 ---
 
@@ -19,20 +30,6 @@
 
 
 
----
-
-## 📝 Descripción del proyecto
-Este portafolio web muestra mis proyectos de **QA**. Incluye un **formulario de contacto** con una API asociada que permite guardar los datos enviados, así como una sección admin que permite consultar los datos recibidos en el formulario.
-
----
-
-## ⚙️ Funcionalidades principales
-- Menú de navegación responsive  
-- Header con nombre, título profesional y enlaces a redes  
-- Sección de proyectos QA con descripción detallada  
-- Sección de formación académica  
-- Formulario de contacto.  
-- Página Admin para mostrar los datos enviados por el formulario.
 
 ---
 
