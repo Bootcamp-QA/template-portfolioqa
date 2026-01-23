@@ -109,7 +109,7 @@ function mostrarDatos() {
     })
     .catch(function(error) {
       console.error(error);
-      table.innerHTML = '<tr><td>Error al cargar los datos</td></tr>';
+      table.innerHTML = '<tr><td>Error</td></tr>';
     });
 }
 
@@ -123,7 +123,7 @@ function getAPI() {
     }
   })
   .then(function(response) {
-    if (!response.ok) throw new Error('Error al cargar');
+    if (!response.ok) throw new Error('Error');
     return response.json();
   });
 };
