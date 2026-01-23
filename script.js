@@ -10,10 +10,10 @@ function enviarFormulario(event) {
 
   //3. CAMBIA SI ES NECESARIO LOS DATOS, DEBES INDICAR EL NOMBRE DEL CAMPO QUE QUIERES MANDAR A LA API, Y EL ID DEL FORMULARIO QUE TIENE ESE DATO.
   var data = {
+    name: document.getElementById('nombre').value, //campo name de la api, se obtiene del input del formulario con id nombre
     email: document.getElementById('email').value, //campo email de la api, se obtiene del input del formulario con id email
     subject: document.getElementById('asunto').value, //campo subject de la api, se obtiene del input del formulario con id asunto
     message: document.getElementById('mensaje').value, //campo message de la api, se obtiene del input del formulario con id mensaje
-    name: document.getElementById('nombre').value //campo name de la api, se obtiene del input del formulario con id nombre
   }
   postAPI(data);
 
@@ -40,7 +40,7 @@ function postAPI (data){
     headers: {
       'Content-Type': 'application/json',
       'apikey': SUPABASE_API_KEY,
-      'Authorization': SUPABASE_API_KEY
+      'Authorization': 'Bearer ' + SUPABASE_API_KEY
     },
     body: JSON.stringify(data)
   })
