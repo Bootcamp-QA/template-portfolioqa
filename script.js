@@ -16,7 +16,7 @@ function enviarFormulario(event) {
     name: document.getElementById('nombre').value //campo name de la api, se obtiene del input del formulario con id nombre
   };
   //Funcion para enviar los datos a la api con POST.
-  enviarPost(data);
+  postAPI(data);
 
    return false; // evita submit normal
 }
