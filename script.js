@@ -62,50 +62,72 @@ function postAPI (data){
  
 };
   //FUNCIÓN PARA OBTENER LOS DATOS DE LA API CON GET
-function getAPI () {
-  try {
-    const response = await fetch(`${SUPABASE_URL}`, {
-      method: 'GET',
-      headers: {
-        'apikey': SUPABASE_API_KEY,
-        'Authorization': `Bearer ${SUPABASE_API_KEY}`
-      }
-    });
-
-    if (!response.ok) throw new Error('Error al cargar');
-    //DATA GUARDA LOS DATOS DE LA RESPUESTA
-    const data = await response.json();
-    return data;
+function getAPI() {
+  return fetch(SUPABASE_URL, {
+    method: 'GET',
+    headers: {
+      'apikey': SUPABASE_API_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_API_KEY
     }
+  })
+  .then(function(response) {
+    if (!response.ok) throw new Error('Error al cargar');
+    return response.json();
+  });
+};
 // ----------------------------
 // FUNCION PARA MOSTRAR DATOS EN UNA PAGINA
 // ----------------------------
-async function mostrarDatos() {
-  const tableBody = document.getElementById('formsBody'); //
+function mostrarDatos() {
+ //INDICAR AQUI EL ID DE LA TABLA DONDE QUIERE MOSTRAR LOS DATOS
+  const table = document.getElementById("formsTable");
+  if (!table) return;
 
-  if (!tableBody || !status) return;
+  getAPI()
+    .then(function(data) {
 
-  status.textContent = 'Cargando...';
- 
-  const data = getAPI ();
-    tableBody.innerHTML = '';
-    //SE RECORREN LOS DATOS PARA MOSTRARLOS EN LA TABLA
-    data.forEach(form => {
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>${form.id}</td>
-        <td>${form.name}</td>
-        <td>${form.email}</td>
-        <td>${form.subject}</td>
-        <td>${form.message}</td>
-      `;
-      tableBody.appendChild(row);
+      if (!Array.isArray(data) || data.length === 0) {
+        table.innerHTML = '<tr><td>No hay datos</td></tr>';
+        return;
+      }
+
+      table.innerHTML = '';
+
+      // CABECERA
+      const thead = document.createElement('thead');
+      const headerRow = document.createElement('tr');
+
+      Object.keys(data[0]).forEach(function(key) {
+        const th = document.createElement('th');
+        th.textContent = key;
+        headerRow.appendChild(th);
+      });
+
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      // CUERPO
+      const tbody = document.createElement('tbody');
+
+      data.forEach(function(item) {
+        const row = document.createElement('tr');
+
+        Object.values(item).forEach(function(value) {
+          const td = document.createElement('td');
+          td.textContent = value ?? '';
+          row.appendChild(td);
+        });
+
+        tbody.appendChild(row);
+      });
+
+      table.appendChild(tbody);
+    })
+    .catch(function(error) {
+      console.error(error);
+      table.innerHTML = '<tr><td>Error al cargar los datos</td></tr>';
     });
-
-  } catch (error) {
-    console.error(error);
-    document.innerHTML = 'Error al cargar los datos';
-  }
 }
+
 
 
