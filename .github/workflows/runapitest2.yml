@@ -1,6 +1,12 @@
 name: Automated API tests using Postman CLI
 
-on: push
+on:
+  push:  # Se ejecuta en cada push
+    branches:
+      - main
+  workflow_dispatch: {}  # Permite ejecución manual
+  schedule:
+    - cron: '0 0 * * 1'  # Se ejecuta semanalmente. Los lunes a media noche
 
 jobs:
   automated-api-tests:
