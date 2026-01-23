@@ -112,20 +112,29 @@ footer {
 
 table {
   width: 100%;
-  margin-top: 1rem;
-}
-th {
-  padding: 0.8rem;
-  text-align: left;
-  max-width: 20%;
-  background-color: #f9f9f9;
+  border-collapse: collapse;
+  table-layout: fixed; /* CLAVE */
+  font-family: Arial, sans-serif;
 }
 
-td {
-  padding: 0.8rem;
-  text-align: left;
-  max-width: 20%;
-  
+th, td {
+  border: 1px solid #ddd;
+  padding: 6px;
+  font-size: 14px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+thead {
+  background-color: #f4f4f4;
+}
+
+/* Móvil */
+@media (max-width: 768px) {
+  th, td {
+    font-size: 12px;
+    padding: 4px;
+  }
 }
 
 
