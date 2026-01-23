@@ -10,9 +10,7 @@ function enviarFormulario(event) {
 
   //3. CAMBIA SI ES NECESARIO LOS DATOS, DEBES INDICAR EL NOMBRE DEL CAMPO QUE QUIERES MANDAR A LA API, Y EL ID DEL FORMULARIO QUE TIENE ESE DATO.
   var data = {
-    name: "test", //campo name de la api, se obtiene del input del formulario con id nombre
-    name2: "test", //campo name de la api, se obtiene del input del formulario con id nombre
-    name3: "test", //campo name de la api, se obtiene del input del formulario con id nombre
+    name: document.getElementById('email').value, //campo name de la api, se obtiene del input del formulario con id nombre
     email: document.getElementById('email').value, //campo email de la api, se obtiene del input del formulario con id email
     subject: document.getElementById('asunto').value, //campo subject de la api, se obtiene del input del formulario con id asunto
     message: document.getElementById('mensaje').value //campo message de la api, se obtiene del input del formulario con id mensaje
