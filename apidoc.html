@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)https://bootcamp-qa.github.io/ReportGenerator/documentacionapi.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Documentación API Supabase</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 2rem auto;
+      max-width: 960px;
+      background: #f9f9f9;
+      color: #333;
+    }
+    h1 { color: #222; border-bottom: 2px solid #ccc; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2rem; color: #444; }
+    code { background: #eee; padding: 0.2rem 0.4rem; border-radius: 4px; }
+    pre {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    .method {
+      display: inline-block;
+      font-weight: bold;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-right: 0.5rem;
+      color: white;
+    }
+    .GET { background: #4caf50; }
+    .POST { background: #2196f3; }
+    .PATCH { background: #ff9800; }
+    .DELETE { background: #f44336; }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input[type=text] {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 1.5rem;
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Documentación de la API REST - Supabase</h1>
+
+<form id="form" onsubmit="return false;" style="display: none;">
+  <label for="tableName">Nombre de la tabla:</label>
+  <input type="text" id="tableName" placeholder="clientes" required="">
+
+  <label for="columns">Columnas (separadas por coma, * indica obligatorio):</label>
+  <input type="text" id="columns" placeholder="nombre, telefono*, correo*" required="">
+
+  <label for="baseUrl">Base URL:</label>
+  <input type="text" id="baseUrl" placeholder="https://proyecto.supabase.co" required="">
+
+  <button onclick="generate()">GENERAR DOCUMENTACION API</button>
+</form>
+
+<!-- Aquí pondremos la documentación generada -->
+<div id="docs" style="margin-top:2rem;">
+        <h2>Autenticación</h2>
+    <p>Todos los endpoints requieren la siguiente autentificacion: Auth Type: API KEY</p>
+    <pre>{
+  "Key": "apikey",
+  "Value": "API KEY DE TU PROYECTO",
+  "Position": "Headers"
+}</pre>
+    <p>El <code>Key</code> lo obtienes desde Supabase en tu proyecto &gt; Settings &gt; API Keys.</p>
+  
+    <h2>GET - form - Obtener todos </h2>
+    <p><span class="method GET">GET</span> <code>https://ekganubktuuqcbtubnwb.supabase.co/rest/v1//rest/v1/form</code></p>
+    <p>Devuelve todos los registros de la tabla <code>form</code>.</p>
+
+    <h2>GET - form - Filtrar por campos</h2>
+    <p><span class="method GET">GET</span> <code>https://ekganubktuuqcbtubnwb.supabase.co/rest/v1//rest/v1/form?campo=eq.valor&amp;campo2=eq.valor2</code></p>
+    <p>Filtra los registros donde campo sea igual a <code>&lt;valor&gt;</code>.</p>
+    <p>Campos disponibles para filtrar:</p>
+    <ul>
+      <li>id</li><li>name</li><li>email</li><li>subject</li><li>age</li><li>message</li>
+    </ul>
+
+    <h2>POST - form - Crear nuevo</h2>
+    <p><span class="method POST">POST</span> <code>https://ekganubktuuqcbtubnwb.supabase.co/rest/v1//rest/v1/form</code></p>
+    <p>Crea un nuevo registro. Campos disponibles:</p>
+    <ul>
+      <li><code>name</code> - opcional</li><li><code>email</code> -  (obligatorio)</li><li><code>subject</code> -  (obligatorio)</li><li><code>age</code> - opcional</li><li><code>message</code> -  (obligatorio)</li>
+    </ul>
+    <p><strong>Body de ejemplo:</strong></p>
+    <pre>{
+  "name": "",
+  "email": "",
+  "subject": "",
+  "age": "",
+  "message": ""
+}</pre>
+
+    <h2>PATCH - form - Editar </h2>
+    <p><span class="method PATCH">PATCH</span> <code>https://ekganubktuuqcbtubnwb.supabase.co/rest/v1//rest/v1/form?id=eq.&lt;id&gt;</code></p>
+    <p>Actualiza el registro con el ID especificado. Puedes enviar uno o varios campos en el body:</p>
+    <pre>{
+  "name": "<nuevo string="">",
+  "email": "<nuevo string="">",
+  "subject": "<nuevo string="">",
+  "age": "<nuevo string="">",
+  "message": "<nuevo string="">"
+}</nuevo></nuevo></nuevo></nuevo></nuevo></pre>
+
+    <h2>DELETE - form - Eliminar </h2>
+    <p><span class="method DELETE">DELETE</span> <code>https://ekganubktuuqcbtubnwb.supabase.co/rest/v1//rest/v1/form?id=eq.&lt;id&gt;</code></p>
+    <p>Elimina el registro con el ID especificado.</p>
+
+
+  </div>
+
+<script>
+function generate() {
+  let tableName = document.getElementById('tableName').value.trim() || 'clientes';
+  const columnsRaw = document.getElementById('columns').value.trim();
+  const baseUrlRaw = document.getElementById('baseUrl').value.trim() || 'https://<TU_PROYECTO>.supabase.co';
+
+  // Procesar columnas
+  const colsArr = columnsRaw.split(',').map(c => c.trim()).filter(c => c.length > 0);
+
+  const columns = colsArr.map(col => {
+    let required = false;
+    let name = col;
+    if (col.endsWith('*')) {
+      required = true;
+      name = col.slice(0, -1).trim();
+    }
+    return { name, type: "string", required };
+  });
+
+  const baseUrl = `${baseUrlRaw}/rest/v1/${tableName}`;
+
+  function generatePostBody() {
+    const obj = {};
+    columns.forEach(col => {
+      if (col.name !== "id") {
+        obj[col.name] = "";
+      }
+    });
+    return JSON.stringify(obj, null, 2);
+  }
+
+  function generatePatchBody() {
+    const obj = {};
+    columns.forEach(col => {
+      if (col.name !== "id") {
+        obj[col.name] = `<nuevo ${col.type}>`;
+      }
+    });
+    return JSON.stringify(obj, null, 2);
+  }
+
+  // Construir el HTML para la documentación
+  let html = `
+        <h2>Autenticación</h2>
+    <p>Todos los endpoints requieren la siguiente autentificacion: Auth Type: API KEY</p>
+    <pre>{
+  "Key": "apikey",
+  "Value": "API KEY DE TU PROYECTO",
+  "Position": "Headers"
+}</pre>
+    <p>El <code>Key</code> lo obtienes desde Supabase en tu proyecto &gt; Settings &gt; API Keys.</p>
+  
+    <h2>GET - ${tableName} - Obtener todos </h2>
+    <p><span class="method GET">GET</span> <code>${baseUrl}</code></p>
+    <p>Devuelve todos los registros de la tabla <code>${tableName}</code>.</p>
+
+    <h2>GET - ${tableName} - Filtrar por campos</h2>
+    <p><span class="method GET">GET</span> <code>${baseUrl}?campo=eq.valor&campo2=eq.valor2</code></p>
+    <p>Filtra los registros donde campo sea igual a <code>&lt;valor&gt;</code>.</p>
+    <p>Campos disponibles para filtrar:</p>
+    <ul>
+      ${columns.map(col => `<li>${col.name}</li>`).join('')}
+    </ul>
+
+    <h2>POST - ${tableName} - Crear nuevo</h2>
+    <p><span class="method POST">POST</span> <code>${baseUrl}</code></p>
+    <p>Crea un nuevo registro. Campos disponibles:</p>
+    <ul>
+      ${columns.filter(c => c.name !== 'id').map(col => `<li><code>${col.name}</code> - ${col.required ? " (obligatorio)" : "opcional"}</li>`).join('')}
+    </ul>
+    <p><strong>Body de ejemplo:</strong></p>
+    <pre>${generatePostBody()}</pre>
+
+    <h2>PATCH - ${tableName} - Editar </h2>
+    <p><span class="method PATCH">PATCH</span> <code>${baseUrl}?id=eq.&lt;id&gt;</code></p>
+    <p>Actualiza el registro con el ID especificado. Puedes enviar uno o varios campos en el body:</p>
+    <pre>${generatePatchBody()}</pre>
+
+    <h2>DELETE - ${tableName} - Eliminar </h2>
+    <p><span class="method DELETE">DELETE</span> <code>${baseUrl}?id=eq.&lt;id&gt;</code></p>
+    <p>Elimina el registro con el ID especificado.</p>
+
+
+  `;
+
+  document.getElementById('docs').innerHTML = html;
+   document.getElementById('form').style.display = 'none';
+  
+}
+
+
+</script>
+
+
+
+
+</body></html>
