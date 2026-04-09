@@ -1,5 +1,5 @@
 // 1. CAMBIAR POR URL Y KEY DE TU API
-const SUPABASE_URL = 'https://ekganubktuuqcbtubnwb.supabase.co/rest/v1/forms'; //URL de la API, en este caso es la url de supabase, pero puede ser cualquier API
+const SUPABASE_URL = 'https://ekganubktuuqcbtubnwb.supabase.co/rest/v1/form'; //URL de la API, en este caso es la url de supabase, pero puede ser cualquier API
 const SUPABASE_API_KEY = 'sb_publishable_9VMR2m2hkgpsoJ2AqK0yZg_ab7siGbi';
 
 
