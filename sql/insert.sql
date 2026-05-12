@@ -1,5 +1,4 @@
-INSERT INTO form (name, email, subject, age, message)
+INSERT INTO form (name, email, message, age)
 VALUES
-('Ana', 'ana@gmail.com', 'information', NULL, 'hola testing'),
-('Pedro', 'luis@gmail.com', 'information', 29, 'hola testing'),
-('Luis', 'maria@gmail.com', 'information', 18, 'hola testing');
+('Ana','ana@gmail.com' , 'test message', NULL),
+('Luis','luis@gmail.com' , 'hello world', 28);
